@@ -94,7 +94,7 @@ class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticata
       wind_data = {}
       wind_data[:uni] =  _user[0].content
       wind_data[:affils] = authdoc.xpath('//wind:authenticationSuccess/wind:affiliations/wind:affil',ns).collect {|x| x.content}
-      puts wind_data.inspect
+      logger.debug wind_data.inspect
       _resource = mapping.to.find_or_create_by_wind_login_field(wind_data[:uni])
       _resource.affiliations= wind_data[:affils]
       _resource.save!
