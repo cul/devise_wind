@@ -15,8 +15,8 @@ module DeviseWind
       end
 
       def copy_migrations
-        migration_template "add_roles.rb", "db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_add_roles.rb"
-        migration_template "add_users_roles.rb", "db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_add_users_roles.rb"
+        migration_template "add_roles.rb", "db/migrate/add_roles.rb"
+        migration_template "add_users_roles.rb", "db/migrate/add_users_roles.rb"
       end
     end
   end
