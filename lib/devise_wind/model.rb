@@ -55,7 +55,7 @@ module Devise
         def find_or_create_by_wind_login_field(login)
           # we should create a user here if login was valid but record is missing
           mname = ("find_or_create_by_" + wind_login_field.to_s)
-          logger.debug "#{self.name}.#{mname}(#{login})"
+          Rails.logger.debug "#{self.name}.#{mname}(#{login})"
           self.send mname.to_sym, login
         end
 
