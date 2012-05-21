@@ -1,3 +1,4 @@
+require 'net/http'
 class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticatable
   include Warden::Mixins::Urls
   # :stopdoc:
@@ -64,7 +65,7 @@ class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticata
   end
   
   def authenticate!
-    logger.debug("Authenticating with WIND for mapping #{mapping.to}")
+    Rails.logger.debug("Authenticating with WIND for mapping #{mapping.to}")
 
     if wind_response
       handle_response!
@@ -94,7 +95,7 @@ class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticata
       wind_data = {}
       wind_data[:uni] =  _user[0].content
       wind_data[:affils] = authdoc.xpath('//wind:authenticationSuccess/wind:affiliations/wind:affil',ns).collect {|x| x.content}
-      logger.debug wind_data.inspect
+      Rails.logger.debug wind_data.inspect
       _resource = mapping.to.find_or_create_by_wind_login_field(wind_data[:uni])
       _resource.affiliations= wind_data[:affils]
       _resource.save!

@@ -1,5 +1,6 @@
+require 'warden'
 require 'devise'
-
+require 'nokogiri'
 require 'devise_wind/engine'
 require 'devise_wind/mixins/urls'
 require 'devise_wind/model'
