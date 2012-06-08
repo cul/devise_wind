@@ -7,16 +7,13 @@ module Devise
         @wind_config = {}
       end
       
-      module InstanceMethods
-        def affiliations=(affils)
-          # do nothing with affiliations by default, let implementers override this
-        end
-        
-        def wind_login
-          self.send self.class.wind_login_field
-        end
-        
-      end # InstanceMethods
+      def affiliations=(affils)
+        # do nothing with affiliations by default, let implementers override this
+      end
+    
+      def wind_login
+        self.send self.class.wind_login_field
+      end
 
       module ClassMethods
         # The name of the wind login field in the database.

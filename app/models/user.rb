@@ -1,3 +1,4 @@
+require 'devise'
 class User
   devise :wind_authenticatable
   

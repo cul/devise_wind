@@ -18,7 +18,7 @@ class SessionsController < Devise::SessionsController
 		# We actually need to hardcode this as Rails default responder doesn't
 		# support returning empty response on GET request
 		respond_to do |format|
-    		format.any(*navigational_formats) { redirect_to "https://wind.columbia.edu/logout?passthrough=1&destination=" + redirect_url }
+    		format.any(*navigational_formats) { redirect_to "https://#{User.wind_host}/logout?passthrough=1&destination=" + redirect_url }
 			format.all do
 		    	method = "to_#{request_format}"
 		    	text = {}.respond_to?(method) ? {}.send(method) : ""
