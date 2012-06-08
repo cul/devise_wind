@@ -4,7 +4,6 @@ require 'nokogiri'
 require 'devise_wind/engine'
 require 'devise_wind/mixins/urls'
 require 'devise_wind/model'
-require 'devise_wind/schema'
 require 'devise_wind/strategy'
 require 'devise_wind/version'
 module DeviseWind

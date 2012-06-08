@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
   s.summary     = %q{Devise/WIND Rails Engine (requires Rails3) }
   s.description = %q{some stuff}
 
-  s.add_dependency "rails", '~> 3.2'
-  s.add_dependency "devise", "~>1.5.3"
-  s.add_dependency("warden", "~> 1.1")
-  s.add_dependency "nokogiri"
+  s.add_dependency 'rails', '~> 3.2'
+  s.add_dependency 'devise', '~>2.1'
+  s.add_dependency 'warden', '~> 1.1'
+  s.add_dependency 'nokogiri'
   s.add_development_dependency 'yard'
   s.add_development_dependency 'ruby-debug'
   s.add_development_dependency 'ruby-debug-base'
