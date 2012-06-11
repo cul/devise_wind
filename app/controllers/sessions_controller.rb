@@ -2,8 +2,14 @@ class SessionsController < Devise::SessionsController
 	protect_from_forgery
 	def new
 		create
-		redirect_to root_path
 	end
+	
+	def create
+	  resource = warden.authenticate!(auth_options)
+    set_flash_message(:notice, :signed_in) if is_navigational_format?
+    sign_in(resource_name, resource)
+    redirect_to after_sign_in_path_for(resource)
+  end
 
 	def destroy
 		signed_in = signed_in?(resource_name)
@@ -18,7 +24,7 @@ class SessionsController < Devise::SessionsController
 		# We actually need to hardcode this as Rails default responder doesn't
 		# support returning empty response on GET request
 		respond_to do |format|
-    		format.any(*navigational_formats) { redirect_to "https://#{User.wind_host}/logout?passthrough=1&destination=" + redirect_url }
+    	format.any(*navigational_formats) { redirect_to "https://#{User.wind_host}/logout?passthrough=1&destination=" + redirect_url }
 			format.all do
 		    	method = "to_#{request_format}"
 		    	text = {}.respond_to?(method) ? {}.send(method) : ""
@@ -26,4 +32,5 @@ class SessionsController < Devise::SessionsController
 		  	end
 		end
 	end
+	
 end
