@@ -18,14 +18,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'warden', '~> 1.1'
   s.add_dependency 'nokogiri'
   s.add_development_dependency 'yard'
-  s.add_development_dependency 'ruby-debug'
-  s.add_development_dependency 'ruby-debug-base'
   s.add_development_dependency 'rspec-rails', '>= 2.10.0'
   s.add_development_dependency 'mocha'
   s.add_development_dependency 'cucumber', '>=0.8.5'
   s.add_development_dependency 'cucumber-rails', '>=1.0.0'
   s.add_development_dependency 'gherkin'
-  s.add_development_dependency 'factory_girl'
   s.add_development_dependency "rake"
 
 
