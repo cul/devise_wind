@@ -1,4 +1,4 @@
-require 'net/http'
+require 'net/https'
 class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticatable
   include Warden::Mixins::Urls
   # :stopdoc:
@@ -83,6 +83,7 @@ class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticata
     validate_path = "/validate?ticketid=#{ticket_id}"
     wind_validate = Net::HTTP.new("wind.columbia.edu",443)
     wind_validate.use_ssl = true
+    wind_validate.verify_mode = OpenSSL::SSL::VERIFY_NONE
     wind_validate.start
     wind_resp = wind_validate.get(validate_path)
     wind_validate.finish
