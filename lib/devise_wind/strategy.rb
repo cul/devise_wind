@@ -75,12 +75,19 @@ class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticata
   end
   
   def wind_redirect_url
-    "https://#{mapping.to.wind_host}/login?destination=#{CGI.escapeHTML(request_url)}&service=#{CGI.escapeHTML(mapping.to.wind_service)}"
+    # Ask for XML response explicitly, since CUIT changes 
+    # default response format arbitrarily.
+    # "https://#{mapping.to.wind_host}/login?destination=#{CGI.escapeHTML(request_url)}&service=#{CGI.escapeHTML(mapping.to.wind_service)}"
+    "https://#{mapping.to.wind_host}/login?sendxml=1&destination=#{CGI.escapeHTML(request_url)}&service=#{CGI.escapeHTML(mapping.to.wind_service)}"
+
   end
   
   def handle_response!
     ticket_id = params['ticketid']
-    validate_path = "/validate?ticketid=#{ticket_id}"
+    # Ask for XML response explicitly, since CUIT changes 
+    # default response format arbitrarily.
+    # validate_path = "/validate?ticketid=#{ticket_id}"
+    validate_path = "/validate?sendxml=1&ticketid=#{ticket_id}"
     wind_validate = Net::HTTP.new("wind.columbia.edu",443)
     wind_validate.use_ssl = true
     wind_validate.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -101,10 +108,10 @@ class Devise::Strategies::WindAuthenticatable < Devise::Strategies::Authenticata
       _resource.affiliations= wind_data[:affils]
       _resource.save!
       success! _resource
-    #else
-    #  fail!
+    else
+      Rails.logger.warn "user not found in wind response"
     end
-  end    
+  end
 end
 
 Warden::Strategies.add :wind_authenticatable, Devise::Strategies::WindAuthenticatable
