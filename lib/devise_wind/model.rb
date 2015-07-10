@@ -51,9 +51,17 @@ module Devise
 
         def find_or_create_by_wind_login_field(login)
           # we should create a user here if login was valid but record is missing
-          mname = ("find_or_create_by_" + wind_login_field.to_s)
-          Rails.logger.debug "#{self.name}.#{mname}(#{login})"
-          self.send mname.to_sym, login
+          # mname = ("find_or_create_by_" + wind_login_field.to_s)
+          # Rails.logger.debug "#{self.name}.#{mname}(#{login})"
+          # self.send mname.to_sym, login
+
+          # 2015-07-10 14:59:47 [WARN] DEPRECATION WARNING: This dynamic method is
+          # deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead.
+          # (called from find_or_create_by_wind_login_field at
+          # /Users/marquis/src/devise_wind/lib/devise_wind/model.rb:56)
+          Rails.logger.debug "self.find_or_create_by(login: login)"
+          self.find_or_create_by(login: login)
+
         end
 
         private
