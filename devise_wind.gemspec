@@ -9,20 +9,25 @@ Gem::Specification.new do |s|
   s.authors     = ["Benjamin Armintor, James Stuart"]
   s.email       = ["armintor@gmail.com"]
   s.homepage    = "http://github.com/cul/devise_wind"
-  s.summary     = %q{Devise/WIND Rails Engine (requires Rails3) }
+  s.summary     = %q{Devise/WIND Rails Engine}
   s.description = %q{some stuff}
 
-  s.add_dependency 'rails', '>= 3.2', '< 5.0'
-  s.add_dependency 'devise', '~>2.1'
+  # s.add_dependency 'rails', '>= 4.0', '< 5.0'
+  # s.add_dependency 'rails', '4.0.13'
+  s.add_dependency 'rails', '~> 4.0'
+  # s.add_dependency 'devise', '~>2.1'
+  s.add_dependency 'devise'
   s.add_dependency 'devise-encryptable'
-  s.add_dependency 'warden', '~> 1.1'
+  # s.add_dependency 'warden', '~> 1.1'
+  s.add_dependency 'warden'
   s.add_dependency 'nokogiri'
   s.add_development_dependency 'yard'
-  s.add_development_dependency 'rspec-rails', '>= 2.10.0'
+  # s.add_development_dependency 'rspec-rails', '>= 2.10.0'
+  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'mocha'
-  s.add_development_dependency 'cucumber', '>=0.8.5'
-  s.add_development_dependency 'cucumber-rails', '>=1.0.0'
-  s.add_development_dependency 'gherkin'
+  # s.add_development_dependency 'cucumber', '>=0.8.5'
+  # s.add_development_dependency 'cucumber-rails', '>=1.0.0'
+  # s.add_development_dependency 'gherkin'
   s.add_development_dependency "rake"
 
 
